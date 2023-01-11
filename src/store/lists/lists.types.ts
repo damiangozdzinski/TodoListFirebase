@@ -1,8 +1,27 @@
 export interface ListsReducerState {
+  loading: boolean;
   lists: TList[];
 }
 
-export type ListsActionTypes = any;
+export enum ListsReducerActions {
+  FETCH_LISTS_SUCCESS = 'FETCH_LISTS_SUCCESS',
+  FETCH_LISTS_LOADING = 'FETCH_LISTS_LOADING',
+  FETCH_LISTS_FAIL = 'FETCH_LISTS_FAIL'
+}
+
+export interface FetchListsSuccess {
+  type: ListsReducerActions.FETCH_LISTS_SUCCESS;
+  payload: TList[];
+}
+export interface FetchListsLoading {
+  type: ListsReducerActions.FETCH_LISTS_LOADING;
+}
+
+export interface FetchListsFail {
+  type: ListsReducerActions.FETCH_LISTS_FAIL;
+}
+
+export type ListsActionTypes = FetchListsSuccess | FetchListsLoading | FetchListsFail;
 
 export type TodoItem = {
   id: string;
