@@ -6,6 +6,7 @@ import { useTypedSelector } from '../../hooks/useTypeSelector';
 import { setSelectedList } from '../../store/main/main.actions';
 import Button from '../atoms/Button';
 import { SidebarT } from './templates.types';
+import { AddNewList } from '../../store/lists/lists.actions';
 
 const Sidebar = ({ showSidebar, setShowSidebar }: SidebarT) => {
   const dispatch = useAppDispatch();
@@ -14,6 +15,10 @@ const Sidebar = ({ showSidebar, setShowSidebar }: SidebarT) => {
   const selectedList = useTypedSelector((state) => state.main.selectedList);
 
   const selectList = useCallback((id: string) => dispatch(setSelectedList(id)), [selectedList]);
+
+  const addNewList = () => {
+    dispatch<any>(AddNewList());
+  };
 
   return (
     <div
@@ -24,7 +29,7 @@ const Sidebar = ({ showSidebar, setShowSidebar }: SidebarT) => {
       <Button
         icon={<PlusCircleIcon className="text-white max-w-[1.325rem] mr-1" />}
         title="ADD NEW LIST"
-        onClick={() => console.log('ee')}
+        onClick={() => addNewList()}
       />
       {!!lists?.length &&
         lists.map(({ id, name }) => (

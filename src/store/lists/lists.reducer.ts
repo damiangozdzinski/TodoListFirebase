@@ -1,4 +1,5 @@
-import { ListsActionTypes, ListsReducerActions, ListsReducerState } from './lists.types';
+import { nanoid } from 'nanoid';
+import { ListsActionTypes, ListsReducerActions, ListsReducerState, TList } from './lists.types';
 
 const initialState = {
   loading: false,
@@ -24,6 +25,18 @@ export const listsReducer = (state: ListsReducerState = initialState, action: Li
         loading: false,
         lists: action.payload
       };
+    case ListsReducerActions.CREATE_NEW_TODO_LIST: {
+      const newList: TList = {
+        id: nanoid(),
+        name: 'New list',
+        createData: new Date(),
+        todo: []
+      };
+      return {
+        ...state,
+        lists: state.lists.concat(newList)
+      };
+    }
     default:
       return state;
   }

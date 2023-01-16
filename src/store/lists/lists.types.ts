@@ -6,7 +6,8 @@ export interface ListsReducerState {
 export enum ListsReducerActions {
   FETCH_LISTS_SUCCESS = 'FETCH_LISTS_SUCCESS',
   FETCH_LISTS_LOADING = 'FETCH_LISTS_LOADING',
-  FETCH_LISTS_FAIL = 'FETCH_LISTS_FAIL'
+  FETCH_LISTS_FAIL = 'FETCH_LISTS_FAIL',
+  CREATE_NEW_TODO_LIST = 'CREATE_NEW_TODO_LIST'
 }
 
 export interface FetchListsSuccess {
@@ -21,7 +22,15 @@ export interface FetchListsFail {
   type: ListsReducerActions.FETCH_LISTS_FAIL;
 }
 
-export type ListsActionTypes = FetchListsSuccess | FetchListsLoading | FetchListsFail;
+export interface CreateNewTodoListAction {
+  type: ListsReducerActions.CREATE_NEW_TODO_LIST;
+}
+
+export type ListsActionTypes =
+  | FetchListsSuccess
+  | FetchListsLoading
+  | FetchListsFail
+  | CreateNewTodoListAction;
 
 export type TodoItem = {
   id: string;
