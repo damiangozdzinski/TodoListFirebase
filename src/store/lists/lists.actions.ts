@@ -2,6 +2,7 @@ import { Dispatch } from 'redux';
 import { newListMock } from '../../constants/NewListMock';
 import { addDocument } from '../../firebase/addDocument';
 import { getCollection } from '../../firebase/getCollection';
+import { setSelectedList } from '../main/main.actions';
 import { ListsReducerActions } from './lists.types';
 
 export const GetLists = () => async (dispatch: Dispatch<any>) => {
@@ -21,11 +22,14 @@ export const GetLists = () => async (dispatch: Dispatch<any>) => {
         payload: ['none']
       });
     } else {
-      if (coll)
+      if (coll) {
         await dispatch({
           type: ListsReducerActions.FETCH_LISTS_SUCCESS,
           payload: coll.lists
         });
+
+        await dispatch(setSelectedList(coll.lists[0].id));
+      }
     }
   } catch (e) {
     dispatch({

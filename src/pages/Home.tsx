@@ -19,7 +19,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="relative overflow-x-hidden w-screen h-screen">
+    <div className="relative overflow-x-hidden w-screen h-screen flex flex-nowrap bg-slate-900">
       <Header showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
       <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
       <Main />
